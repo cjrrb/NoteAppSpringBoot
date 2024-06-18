@@ -1,0 +1,156 @@
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header .logo {
+    width: 35px;
+    height: auto;
+    padding-bottom: 8px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.note {
+    background-color: #e9ecef;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(50% - 20px);
+    flex-grow: 1;
+    box-sizing: border-box;
+}
+
+.note-content {
+    overflow: hidden;
+}
+
+.note-content p {
+    margin: 5px 0;
+}
+
+.note-actions {
+    margin-top: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 70%;
+}
+
+.form-group-desc {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.form-group-date {
+    margin-bottom: 15px;
+    width: 30%;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea {
+    width: 70%;
+    min-height: 150px;
+    resize: vertical;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #1fb78a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #2b976c;
+}
+
+input[type="submit"] {
+    background-color: #1fb78a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+    background-color: #2b976c;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border: 1px solid #1fb78a;
+}
+
+a {
+    color: #2b976c;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1fb78a;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #2b976c;
+}
+
+@media (max-width: 768px) {
+    .note {
+        width: 100%;
+    }
+}

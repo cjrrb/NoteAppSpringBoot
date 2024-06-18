@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2 - Cort Reynolds-Bolan</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Note Manager</h1>
+            <img src="../static/logo.png" th:src="@{/logo.png}" class="logo"/>
+        </div>        
+        <hr>
+
+        <!--Form to add a note-->
+        <h2>Add Note</h2>
+        <form method="post" action="/addOrEditNote" th:object="${note}">
+            <input type="hidden" name="id" th:field="*{id}"/>
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" name="name" th:field="*{name}"/>
+            </div>
+            <div class="form-group-desc">
+                <label>Description:</label>
+                <textarea name="desc" th:field="*{desc}" class="desc-text" rows="3"></textarea>
+            </div>
+            <div class="form-group-date">
+                <label>Date:</label>
+                <input type="date" name="note_date" th:field="*{note_date}"/>
+            </div>
+            <button type="submit">Add</button>
+        </form>
+
+        <!--Notes list-->
+        <h2>Notes</h2>
+        <div class="notes-container">
+            <div th:each="n : ${noteList}" class="note">
+                <div class="note-content">
+                    <p><strong th:text="${n.name}">Name</strong></p>
+                    <p th:text="${n.desc}">Description</p>
+                    <p th:text="${n.note_date}">Date</p>
+                    <div class="note-actions">
+                        <a th:href="@{/editNote/}+${n.id}"><strong>Edit</strong></a>
+                        <a th:href="@{/deleteNote/}+${n.id}"><strong>Delete</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p th:if="${noteList == null or noteList.size() == 0}">No notes, add one!</p>
+        <hr>
+
+        <!--Filter-->
+        <h2>Filter Notes</h2>
+        <form method="post" action="/getNoteListFilter" th:object="${note}">
+            <div class="form-group">
+                <label>Search your notes...</label>
+                <input type="text" name="nameOrDescFilter" th:field="*{nameOrDescFilter}"/>
+            </div>
+            <button type="submit">Filter</button>
+        </form>
+
+        <!--Filtered notes list-->
+        <div class="notes-container" th:if="${noteListFilter != null}">
+            <div th:each="f : ${noteListFilter}" class="note">
+                <div class="note-content">
+                    <p><strong th:text="${f.name}">Name</strong></p>
+                    <p th:text="${f.desc}">Description</p>
+                    <p th:text="${f.note_date}">Date</p>
+                </div>
+            </div>
+            <p th:if="${noteListFilter.size() == 0}">No notes found, try searching again.</p>
+            <hr>
+        </div>
+    </div>
+</body>
+</html>
